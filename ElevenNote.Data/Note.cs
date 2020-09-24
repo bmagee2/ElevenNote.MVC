@@ -27,6 +27,6 @@ namespace ElevenNote.Data
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
-        public DateTimeOffset? ModifiedUtc { get; set; }
+        public DateTimeOffset? ModifiedUtc { get; set; }    // ? allows the value type to be null; referred to as the null-conditional operator
     }
 }
