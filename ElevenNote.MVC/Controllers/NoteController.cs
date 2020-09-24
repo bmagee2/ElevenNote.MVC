@@ -1,4 +1,6 @@
 ﻿using ElevenNote.Models;
+using ElevenNote.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,14 @@ namespace ElevenNote.MVC.Controllers
         // GET: Note/Index
         public ActionResult Index()
         {
-            var model = new NoteListItem[0];    // initializing a new instance of the NoteListItem as an IEnumerable with the [0] syntax
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new NoteService(userId);
+            var model = service.GetNotes();
+
             return View(model);
+
+            //var model = new NoteListItem[0];    // initializing a new instance of the NoteListItem as an IEnumerable with the [0] syntax
+            //return View(model);
         }
 
         // GET
@@ -26,15 +34,22 @@ namespace ElevenNote.MVC.Controllers
 
         // POST
         // method that will eventually push the data inputted in the view through our service and into the database
+        // method makes sure the model is valid, grabs the current userId, calls on CreateNote, and returns the user back to the index view
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(NoteCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                return View(model);
             }
-            return View(model);
+
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new NoteService(userId);
+
+            service.CreateNote(model);
+
+            return RedirectToAction("Index");
         }
     }
 }
