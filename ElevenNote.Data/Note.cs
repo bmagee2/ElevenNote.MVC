@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace ElevenNote.Data
         [Required]
         [Display(Name = "Your Note")]
         public string Content { get; set; }
+
+        // ADDED & HAD TO MIGRATE
+        [DefaultValue(false)]
+        public bool IsStarred { get; set; }
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
