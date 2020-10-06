@@ -27,7 +27,7 @@ namespace ElevenNote.MVC.Controllers
             //return View(model);
         }
 
-        // GET
+        // GET -- making a request to get the Create View
         public ActionResult Create()
         {
             return View();

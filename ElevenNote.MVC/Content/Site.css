@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*NAVBAR COLOR & APP NAME FONT*/
+.navbar {
+    background-color: darkslategrey;
+    font-family: 'Lexend Giga', sans-serif;
+}
+
+@font-face {
+    font-family: Merci-Regular;
+    src: url(Assests/Merci-Regular.ttf);
+}
+
+/*NAVBAR LINKS*/
+.navbar-collapse {
+/*    font-family: 'Lexend Giga', sans-serif;*/
+    font-family: Merci-Regular;
+}
+
+
