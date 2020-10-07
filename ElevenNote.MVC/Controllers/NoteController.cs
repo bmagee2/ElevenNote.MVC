@@ -1,4 +1,5 @@
-﻿using ElevenNote.Models;
+﻿using ElevenNote.Data;
+using ElevenNote.Models;
 using ElevenNote.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -13,6 +14,9 @@ namespace ElevenNote.MVC.Controllers
     [Authorize]
     public class NoteController : Controller    // controller name will be the first part of our path --- localhost:xxxxx/Note
     {
+
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();  // ADDED
+
         // GET: Note/Index
         public ActionResult Index()
         {
@@ -20,6 +24,7 @@ namespace ElevenNote.MVC.Controllers
             //var service = new NoteService(userId);
             var service = CreateNoteService();
             var model = service.GetNotes();
+            
 
             return View(model);
 
@@ -55,12 +60,26 @@ namespace ElevenNote.MVC.Controllers
             return View(model);
         }
 
-        public ActionResult Details(int id)
+        //public ActionResult Details(int id)
+        //{
+        //    var svc = CreateNoteService();
+        //    var model = svc.GetNoteById(id);
+
+        //    return View(model);
+        //}
+
+        public ActionResult ModalDetails(int id)
         {
             var svc = CreateNoteService();
             var model = svc.GetNoteById(id);
+            return PartialView("_Details", model);
+        }
 
-            return View(model);
+        public ActionResult Details(int Id)
+        {
+            NoteDetail note = new NoteDetail();
+            note = _db.NoteDetail.
+            return PartialView("_Details", note);
         }
 
         public ActionResult Edit(int id)
@@ -132,5 +151,12 @@ namespace ElevenNote.MVC.Controllers
             var service = new NoteService(userId);
             return service;
         }
+
+        public ActionResult ModalPopUp()
+        {
+            return View();
+        }
+
+       
     }
 }

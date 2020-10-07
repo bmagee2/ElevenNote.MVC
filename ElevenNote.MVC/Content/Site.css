@@ -40,19 +40,11 @@ textarea {
     font-family: Merci-Regular;
 }
 
-.box {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-}
-
-
-
 .home-container {
-    padding-top: 30px;
+   /* padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 30px;
-    color: inherit;
+    color: inherit;*/
     /*    background-color: #eeeeee;*/
 }
 
@@ -65,6 +57,10 @@ textarea {
     background-color: deepskyblue;
     margin: 20px;
 }
+
+/*.table{
+    margin: 40px;
+}*/
 
 footer {
     /* background-color: rgb(218, 28, 192); */

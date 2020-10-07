@@ -26,5 +26,10 @@ namespace ElevenNote.MVC.Controllers
 
             return View();
         }
+
+        public ActionResult ModalPopUp()
+        {
+            return View();
+        }
     }
 }

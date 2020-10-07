@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -21,6 +21,10 @@
         @TempData["SaveResult"]
     </div>
 }
+
+<div class="">
+
+</div>
 <table class="table">
     <tr>
         <th>
@@ -59,38 +63,62 @@
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 
                 @*anonymous classes communicate to the NoteController and select the appropriate Note*@
-                @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
+                @Html.ActionLink("Edit Note", "Edit", "Note", new { id = item.NoteId }, null)
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |*@
+                @Html.ActionLink("View Details", "Details", "Note", new { id = item.NoteId }, null)
+                @*@Html.ActionLink("Details", "Details", new { id = item.NoteId }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
+                @Html.ActionLink("popup", "ModalPopUp", "Note", new { id = item.NoteId }, null)
+                <button id="btnShowModal" type="button"
+                        class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+                    Satya Modals
+                </button>
+                <a href="javascript:void(0);" class="anchorDetail" data-id="@item.NoteId">Details</a>
             </td>
         </tr>
     }
 
 </table>
 
-@section scripts {
-    <script language="javascript" type="text/javascript">
-     $(document).ready(function () {
-         $("i[data-toggle='star']")
-             .css({ "cursor": "pointer" })
-             .click(function (e) {
-                 var target = $(e.target);
-                 var noteId = target.attr("data-id");
-                 var starSet = target.hasClass("glyphicon-star");
+@section scripts
+    {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var TeamDetailPostBackURL = '/Home/Details';
+        $(function () {
+            $(".anchorDetail").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
 
-                 $.ajax({
-                     method: starSet ? "DELETE" : "PUT",
-                     url: "/api/note/" + noteId + "/star",
-                     data: null
-                 })
-                 .done(function (r) {
-                     target.removeClass();
-                     target.addClass("glyphicon " + (starSet ? "glyphicon-star-empty" : "glyphicon-star"));
-                 })
-                 .fail(function (r) {
-                     alert("Failed to change star status");
-                 });
-             });
-     });
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+
     </script>
+
 }
