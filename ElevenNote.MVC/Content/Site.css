@@ -40,4 +40,39 @@ textarea {
     font-family: Merci-Regular;
 }
 
+.box {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
 
+
+
+.home-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    /*    background-color: #eeeeee;*/
+}
+
+.logo {
+    background-color: orange;
+    margin: 20px;
+}
+
+.about {
+    background-color: deepskyblue;
+    margin: 20px;
+}
+
+footer {
+    /* background-color: rgb(218, 28, 192); */
+/*    background-color: #25faa8;*/
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
