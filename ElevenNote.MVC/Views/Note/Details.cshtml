@@ -6,55 +6,7 @@
 
 <h2>Details</h2>
 
-<div class="modal">
-    <div class="modal-body">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.NoteId)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NoteId)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Content)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Content)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedUtc)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.CreatedUtc)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.ModifiedUtc)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ModifiedUtc)
-            </dd>
-
-        </dl>
-    </div>
-
-</div>
-
-@*<div>
+<div>
     <h4>NoteDetail</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -104,4 +56,4 @@
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.NoteId }) |
     @Html.ActionLink("Back to List", "Index")
-</p>*@
+</p>

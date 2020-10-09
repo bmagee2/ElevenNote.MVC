@@ -27,6 +27,13 @@ namespace ElevenNote.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+
+            var noteOne = new Note { Title = "Daily Note 1", Content = "This note is daily" };
+            var noteTwo = new Note { Title = "Daily Note 2", Content = "This note is daily" };
+            var noteThree = new Note { Title = "Daily Note 3", Content = "This note is daily" };
+
+            context.Notes.AddOrUpdate(n => n.Title, noteOne, noteTwo, noteThree);
         }
     }
 }

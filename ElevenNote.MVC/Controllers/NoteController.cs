@@ -75,12 +75,12 @@ namespace ElevenNote.MVC.Controllers
             return PartialView("_Details", model);
         }
 
-        public ActionResult Details(int Id)
-        {
-            NoteDetail note = new NoteDetail();
-            note = _db.NoteDetail.
-            return PartialView("_Details", note);
-        }
+        //public ActionResult Details(int Id)
+        //{
+        //    NoteDetail note = new NoteDetail();
+        //    note = _db.NoteDetail.
+        //    return PartialView("_Details", note);
+        //}
 
         public ActionResult Edit(int id)
         {

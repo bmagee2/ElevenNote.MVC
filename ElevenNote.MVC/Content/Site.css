@@ -62,9 +62,19 @@ textarea {
     margin: 40px;
 }*/
 
+.card {
+    border: solid 4px black;
+    background-color: whitesmoke;
+    margin-bottom: 7px;
+}
+
+.card-header {
+    background-color: lightgreen;
+}
+
 footer {
     /* background-color: rgb(218, 28, 192); */
-/*    background-color: #25faa8;*/
+    /*    background-color: #25faa8;*/
     color: black;
     font-size: 20px;
     text-align: center;

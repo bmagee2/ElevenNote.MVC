@@ -75,6 +75,14 @@
     <Compile Include="Migrations\202009251928041_AddStar.Designer.cs">
       <DependentUpon>202009251928041_AddStar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010072144387_SeedData.cs" />
+    <Compile Include="Migrations\202010072144387_SeedData.Designer.cs">
+      <DependentUpon>202010072144387_SeedData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010072154480_tryagain.cs" />
+    <Compile Include="Migrations\202010072154480_tryagain.Designer.cs">
+      <DependentUpon>202010072154480_tryagain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009251928041_AddStar.resx">
       <DependentUpon>202009251928041_AddStar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010072144387_SeedData.resx">
+      <DependentUpon>202010072144387_SeedData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010072154480_tryagain.resx">
+      <DependentUpon>202010072154480_tryagain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
