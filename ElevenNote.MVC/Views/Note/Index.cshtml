@@ -7,7 +7,7 @@
 <h2>so many Notes</h2>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 @*ADDED Bootstrap Error Message in the View*@
 @*.ContainsKey checks to see if that key is in the dictionary, but will not remove it*@
@@ -21,18 +21,27 @@
         @TempData["SaveResult"]
     </div>
 }
-@{ int i = 0; }
+@*@{ int i = 0; }*@
 
 @foreach (var item in Model)
 {
-    <div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">@Html.DisplayFor(modelItem => item.Title)</h1>
+            <p class="lead">@Html.DisplayFor(modelItem => item.CreatedUtc, new { htmlAttributes = new { rows = 10 } })</p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.NoteId }) |
+            @*@Html.ActionLink("Add Comment", "CreateCommentWithBulletinId", "Comment", new { id = item.BulletinId }, null)*@
+        </div>
+    </div>
+    @*<div class="container">
 
         <div class="card">
 
             <div class="card-body">
                 <h5 class="card-title">  @Html.DisplayFor(modelItem => item.Title)</h5>
                 <p class="card-text">  @Html.DisplayFor(modelItem => item.CreatedUtc)</p>
-                @*<a href="#" class="btn btn-primary">@Html.ActionLink("Edit Note", "Edit", "Note", new { id = item.NoteId }, null)</a>*@
             </div>
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills">
@@ -61,12 +70,11 @@
                 <div id="collapseOne_@i" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            
+
                             @foreach (var thing in Model)
                             {
                                 <div class="col-sm-6 col-md-4">
                                     <div class="thumbnail">
-                                        @*<img src="~/Content/defaultassets/default_album.jpg">*@
                                         <div class="caption">
                                             <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                                             <h4>Listening progress: </h4>
@@ -84,23 +92,10 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                @*@Html.ActionLink("Modal?", "ModalPopUp", "Note", new { id =  }, new { @class = "btn btn-default btn-large" })*@ button
+
                                             </div>
                                         </div>
-                                        @*<div class="panel-footer">
-                                                <div class="row">
-                                                    <div class="footer-icon col-lg-6" style="text-align: center;">
-                                                        <p class="icon">
-                                                            @Html.DisplayFor(modelItem => userAlbum.IsFavorited, new { Id = userAlbum.UserAlbumID })
-                                                        </p>
-                                                    </div>
-                                                    <div class="footer-icon col-lg-6" style="text-align: center;">
-                                                        <p class="icon">
-                                                            @Html.DisplayFor(modelItem => userAlbum.HaveListened, new { Id = userAlbum.UserAlbumID })
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>*@
+
                                     </div>
                                 </div>
                             }
@@ -112,50 +107,50 @@
 
         </div>
         </div>
-        i++;
+        i++;*@
 
-        }
-   
+}
 
-        @section scripts
+
+@section scripts
     {
-            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-            <script src="~/Scripts/bootstrap.js"></script>
-            <script src="~/Scripts/bootstrap.min.js"></script>
-            <script>
-                var TeamDetailPostBackURL = '/Home/Details';
-                $(function () {
-                    $(".anchorDetail").click(function () {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        var TeamDetailPostBackURL = '/Home/Details';
+        $(function () {
+            $(".anchorDetail").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
                         debugger;
-                        var $buttonClicked = $(this);
-                        var id = $buttonClicked.attr('data-id');
-                        var options = { "backdrop": "static", keyboard: true };
-                        $.ajax({
-                            type: "GET",
-                            url: TeamDetailPostBackURL,
-                            contentType: "application/json; charset=utf-8",
-                            data: { "Id": id },
-                            datatype: "json",
-                            success: function (data) {
-                                debugger;
-                                $('#myModalContent').html(data);
-                                $('#myModal').modal(options);
-                                $('#myModal').modal('show');
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
 
-                            },
-                            error: function () {
-                                alert("Dynamic content load failed.");
-                            }
-                        });
-                    });
-                    //$("#closebtn").on('click',function(){
-                    //    $('#myModal').modal('hide');
-
-                    $("#closbtn").click(function () {
-                        $('#myModal').modal('hide');
-                    });
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
                 });
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
 
-            </script>
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
 
-        }
+    </script>
+
+}
